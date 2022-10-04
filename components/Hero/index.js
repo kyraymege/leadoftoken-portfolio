@@ -52,7 +52,7 @@ const Hero = () => {
                                 <div className="mt-6 text-xl font-light text-gray-500 antialiased">a new experience to manage your NFTs!</div>
                                 <Link href="/auth" >
                                     <button className="mt-6 translate-z-60 px-8 py-4 rounded-full font-medium tracking-wide bg-gradient-to-b from-indigo-400 to-indigo-600 text-white outline-none focus:outline-none hover:shadow-lg hover:from-indigo-700 transition duration-200 ease-in-out">
-                                        Let's Start
+                                        Let&apos;s Start
                                     </button>
                                 </Link>
                             </div>

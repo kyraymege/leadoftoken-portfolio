@@ -63,7 +63,7 @@ const AssetsDetails = ({ nft, blockchain }) => {
                                     <p className='text-lg font-medium text-gray-200'>
                                         Contract Address
                                     </p>
-                                    <a href={"https://blockscan.com/address/" + nft?.token_address} target="_blank" className='text-indigo-500'>
+                                    <a href={"https://blockscan.com/address/" + nft?.token_address} rel="noreferrer" target="_blank" className='text-indigo-500'>
                                         {(nft?.token_address).slice(0, 7) + '...' + (nft?.token_address).slice(-7)}
                                     </a>
                                 </span>
