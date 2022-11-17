@@ -11,6 +11,7 @@ const MyAssets = () => {
     const [chain, setChain] = useState("eth");
     const { data: session, status } = useSession();
     const [assets, setAssets] = useState({});
+    const [tokens, setTokens] = useState([])
     useEffect(() => {
         const options = {
             method: 'GET',
@@ -29,6 +30,25 @@ const MyAssets = () => {
                 console.error(error);
             });
     }, [chain])
+
+    useEffect(() => {
+        const options = {
+            method: 'GET',
+            url: 'https://deep-index.moralis.io/api/v2/'+session?.user?.address+'/erc20',
+            params: {chain: chain},
+            headers: {accept: 'application/json', 'X-API-Key': 'bVXKVLnIrArvIiOpvCpL2lnsrVA6vrN8CFMxGHbBPlLz1fnlrZ5sd4OwRmw50X0g'}
+          };
+          
+          axios
+            .request(options)
+            .then(function (response) {
+                setTokens(response?.data);
+            })
+            .catch(function (error) {
+              console.error(error);
+            });
+    }, [chain])
+    
 
     return (
         <div className='flex flex-col container mx-auto py-20'>
@@ -70,15 +90,12 @@ const MyAssets = () => {
             </div>
             <div className='px-6'>
                 <div className='flex items-center gap-x-4'>
-                    <h1 className="sm:text-4xl text-5xl font-bold mb-2 text-gray-400">My Assets</h1>
-                    <span className='bg-gray-500 rounded-full px-5 py-3'>
-                        <p className='text-white font-bold text-lg'>{assets?.total}</p>
-                    </span>
+                    <h1 className="sm:text-4xl text-5xl font-bold mb-2 text-gray-400">My Assets</h1>                    
                 </div>
                 <div className="h-1 w-20 bg-indigo-500 rounded"></div>
             </div>
             <div>
-                <MyAssetsGrid nfts={assets?.result} chain={chain} />
+                <MyAssetsGrid nfts={assets?.result} chain={chain} tokens={tokens} totalNft={assets?.total} totalToken={tokens?.length} />
             </div>
         </div>
     )

@@ -5,9 +5,6 @@ import { MdDescription } from "react-icons/md";
 import Link from 'next/link';
 const AssetsDetails = ({ nft, blockchain }) => {
     const [box1, setBox1] = useState(false);
-    const [box2, setBox2] = useState(false);
-    const [box3, setBox3] = useState(false);
-    const [box4, setBox4] = useState(false);
     const [nftMetaData, setNftMetaData] = useState()
     useEffect(() => {
         if (nft) {
